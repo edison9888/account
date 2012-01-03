@@ -10,6 +10,9 @@
 
 @implementation ViewController
 
+@synthesize buttonSystemConfig;
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -56,5 +59,23 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+
+- (void)systemConfigButtonOnclick:(id)sender
+{
+    [self showSystemConfigView];
+}
+
+//显示系统配置界面
+- (void)showSystemConfigView
+{
+    if (!systemConfigViewController) {
+        systemConfigViewController = [[SystemConfigViewController alloc] init];
+    }
+    
+    [self.view addSubview:systemConfigViewController.view];
+}
+
+
 
 @end

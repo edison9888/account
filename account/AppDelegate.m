@@ -26,6 +26,28 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+    
+    //计算各窗体之间的坐标，方便直接调用
+    float height    = [[UIScreen mainScreen] applicationFrame].size.height;
+    frameWidth      = [[UIScreen mainScreen] applicationFrame].size.width;
+    
+    //标题区域
+    titleHeight = 44.0;
+    titleX = 0.0;
+    titleY = 0.0;
+
+    //控制区域
+    controllerHeight = 44.0;
+    controllerX = 0.0;
+    controllerY = height - controllerHeight;
+    
+    
+    //主体区域
+    controllerHeight = height - titleHeight - controllerHeight;
+    contentX = 0.0;
+    contentY = titleHeight;
+    
+    
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
@@ -70,5 +92,28 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+//获取标题区域的CGRect结构
++ (CGRect)getTitleBounds
+{
+    return [self getTitleBounds];
+}
+
+- (CGRect)getTitleBounds
+{ 
+    return CGRectMake(titleX, titleY, frameWidth, titleHeight);
+}
+
+//获取控制区域的CGRect结构
++ (CGRect)getControllerBounds
+{
+    return [self getControllerBounds];
+}
+
+- (CGRect)getControllerBounds
+{
+    return CGRectMake(controllerX, controllerY, frameWidth, controllerHeight);
+}
+
 
 @end
